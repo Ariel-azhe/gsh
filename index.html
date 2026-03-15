@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Princeton Graduate Student Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <p class="screen-label">Screen 2: Student View</p>
+
+  <div class="app-container">
+
+    <!-- ── Header ── -->
+    <header class="app-header">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"
+                fill="#4B44A8" stroke="#4B44A8" stroke-width="0.5"/>
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35V2z"
+                fill="white" opacity="0.5"/>
+        </svg>
+        <span class="logo-text">Princeton Graduate Student Hub</span>
+      </div>
+      <div class="role-toggle">
+        <span class="role-label">Admin</span>
+        <div class="role-switch-group">
+          <span class="role-option" id="role-student">Student</span>
+          <button class="toggle-switch" id="role-toggle-btn" onclick="placeholderToggleRole()" aria-label="Toggle role">
+            <span class="toggle-thumb"></span>
+          </button>
+          <span class="role-option" id="role-officer">Officer</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Filter Bar ── -->
+    <div class="filter-bar">
+      <span class="filter-label">Filter By:</span>
+      <div class="filter-buttons">
+
+        <div class="filter-wrapper">
+          <button class="filter-btn active" id="btn-location" onclick="toggleDropdown('location-dropdown', this)">Location</button>
+          <div class="filter-dropdown" id="location-dropdown">
+            <label><input type="checkbox" checked /> Graduate College</label>
+            <label><input type="checkbox" checked /> Lawrence</label>
+            <label><input type="checkbox" checked /> Lakeside</label>
+            <label><input type="checkbox" checked /> Meadows</label>
+          </div>
+        </div>
+
+        <button class="filter-btn" onclick="placeholderFilter('Org')">Org</button>
+        <button class="filter-btn" onclick="placeholderFilter('Type')">Type</button>
+        <button class="filter-btn" onclick="placeholderFilter('Time')">Time</button>
+        <button class="filter-btn" onclick="placeholderFilter('My Orgs')">My Orgs</button>
+      </div>
+
+      <div class="search-nav">
+        <input class="search-input" type="text" placeholder="Search for Event" oninput="placeholderSearch(this.value)" />
+        <button class="nav-btn" onclick="placeholderNav('prev')" aria-label="Previous week">&#9664;</button>
+        <button class="nav-btn" onclick="placeholderNav('next')" aria-label="Next week">&#9654;</button>
+      </div>
+    </div>
+
+    <!-- ── Calendar ── -->
+    <div class="calendar-wrapper">
+
+      <!-- Time gutter -->
+      <div class="time-gutter">
+        <div class="day-header-spacer"></div>
+        <div class="time-slots">
+          <div class="time-slot">9am</div>
+          <div class="time-slot">10am</div>
+          <div class="time-slot">11am</div>
+          <div class="time-slot">12pm</div>
+          <div class="time-slot">1pm</div>
+          <div class="time-slot">2pm</div>
+          <div class="time-slot">3pm</div>
+          <div class="time-slot">4pm</div>
+          <div class="time-slot">5pm</div>
+          <div class="time-slot">6pm</div>
+          <div class="time-slot">7pm</div>
+          <div class="time-slot">8pm</div>
+          <div class="time-slot">9pm</div>
+          <div class="time-slot">10pm</div>
+        </div>
+      </div>
+
+      <!-- Day columns -->
+      <div class="days-grid">
+
+        <!-- Sun Feb 21 -->
+        <div class="day-col">
+          <div class="day-header">Sun Feb 21</div>
+          <div class="day-body"></div>
+        </div>
+
+        <!-- Mon Feb 22 -->
+        <div class="day-col">
+          <div class="day-header">Mon Feb 22</div>
+          <div class="day-body">
+            <div class="event"
+                 style="top: calc(var(--slot-h) * 9); height: calc(var(--slot-h) * 1);"
+                 onclick="openPopup('popup-open-bar', this)">
+              <span class="event-title">Open Bar</span>
+              <span class="event-meta">6-7 &nbsp;&#x1F464; coffee club</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tues Feb 23 -->
+        <div class="day-col">
+          <div class="day-header">Tues Feb 23</div>
+          <div class="day-body">
+            <div class="event"
+                 style="top: calc(var(--slot-h) * 4.5); height: calc(var(--slot-h) * 1);"
+                 onclick="openPopup(null, this)">
+              <span class="event-title">Craft Event</span>
+              <span class="event-meta">1:30-2:30 &nbsp;&#x1F464; lakeside</span>
+            </div>
+            <div class="event"
+                 style="top: calc(var(--slot-h) * 5); height: calc(var(--slot-h) * 0.5);"
+                 onclick="openPopup(null, this)">
+              <span class="event-title">Study Break</span>
+              <span class="event-meta">2:00-2:30 &nbsp;&#x1F464; graduate college</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wed Feb 24 -->
+        <div class="day-col">
+          <div class="day-header">Wed Feb 24</div>
+          <div class="day-body">
+            <div class="event"
+                 style="top: calc(var(--slot-h) * 11); height: calc(var(--slot-h) * 2);"
+                 onclick="openPopup(null, this)">
+              <span class="event-title">Rec Tennis</span>
+              <span class="event-meta">8:00-10:00 &nbsp;&#x1F464; meadows</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thurs Feb 25 -->
+        <div class="day-col">
+          <div class="day-header">Thurs Feb 25</div>
+          <div class="day-body"></div>
+        </div>
+
+        <!-- Fri Feb 27 -->
+        <div class="day-col">
+          <div class="day-header">Fri Feb 27</div>
+          <div class="day-body">
+            <div class="event"
+                 style="top: calc(var(--slot-h) * 6); height: calc(var(--slot-h) * 2);"
+                 onclick="openPopup(null, this)">
+              <span class="event-title">Club Meeting</span>
+              <span class="event-meta">3:00-5:00 &nbsp;&#x1F464; TBD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sat Feb 28 -->
+        <div class="day-col">
+          <div class="day-header">Sat Feb 28</div>
+          <div class="day-body"></div>
+        </div>
+
+      </div><!-- /days-grid -->
+    </div><!-- /calendar-wrapper -->
+
+  </div><!-- /app-container -->
+
+  <!-- ── Event Detail Popup ── -->
+  <div class="event-popup" id="popup-open-bar">
+    <div class="popup-header">
+      <span class="popup-title">Open Bar</span>
+      <button class="popup-close" onclick="closePopup('popup-open-bar')" aria-label="Close">&#10006;</button>
+    </div>
+    <p><strong>Time:</strong> 6-7</p>
+    <p><strong>Location:</strong> Coffee Club</p>
+    <p><strong>Organization:</strong> GSG</p>
+    <p><strong>Event type:</strong></p>
+    <ul>
+      <li>Social</li>
+      <li>Open-to-all</li>
+    </ul>
+  </div>
+
+  <!-- Backdrop to close dropdowns/popups -->
+  <div class="backdrop" id="backdrop" onclick="closeAll()"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
