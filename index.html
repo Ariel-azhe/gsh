@@ -71,19 +71,16 @@
   </div><!-- /app-container -->
 
   <!-- ── Event Detail Popup ── -->
-  <div class="event-popup" id="popup-open-bar">
+  <div class="event-popup" id="popup-event">
     <div class="popup-header">
-      <span class="popup-title">Open Bar</span>
-      <button class="popup-close" onclick="closePopup('popup-open-bar')" aria-label="Close">&#10006;</button>
+      <span class="popup-title" id="popup-event-title"></span>
+      <button class="popup-close" onclick="closePopup('popup-event')" aria-label="Close">&#10006;</button>
     </div>
-    <p><strong>Time:</strong> 6-7</p>
-    <p><strong>Location:</strong> Coffee Club</p>
-    <p><strong>Organization:</strong> GSG</p>
+    <p><strong>Time:</strong> <span id="popup-event-time"></span></p>
+    <p><strong>Location:</strong> <span id="popup-event-location"></span></p>
+    <p><strong>Organization:</strong> <span id="popup-event-org"></span></p>
     <p><strong>Event type:</strong></p>
-    <ul>
-      <li>Social</li>
-      <li>Open-to-all</li>
-    </ul>
+    <ul id="popup-event-types"></ul>
   </div>
 
   <!-- Backdrop to close dropdowns/popups -->

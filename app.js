@@ -92,31 +92,31 @@ const calendar = new FullCalendar.Calendar(document.getElementById('calendar'), 
       title: 'Open Bar',
       start: weekDate(1, 18),
       end:   weekDate(1, 19),
-      extendedProps: { popupId: 'popup-open-bar', meta: '6–7 · coffee club' }
+      extendedProps: { meta: '6–7 · coffee club', time: '6–7pm', location: 'Coffee Club', org: 'GSG', types: ['Social', 'Open-to-all'] }
     },
     {
       title: 'Craft Event',
       start: weekDate(2, 13, 30),
       end:   weekDate(2, 14, 30),
-      extendedProps: { meta: '1:30–2:30 · lakeside' }
+      extendedProps: { meta: '1:30–2:30 · lakeside', time: '1:30–2:30pm', location: 'Lakeside', org: 'Lakeside GSA', types: ['Social'] }
     },
     {
       title: 'Study Break',
       start: weekDate(2, 14),
       end:   weekDate(2, 14, 30),
-      extendedProps: { meta: '2:00–2:30 · graduate college' }
+      extendedProps: { meta: '2:00–2:30 · graduate college', time: '2:00–2:30pm', location: 'Graduate College', org: 'GC Council', types: ['Academic', 'Open-to-all'] }
     },
     {
       title: 'Rec Tennis',
       start: weekDate(3, 20),
       end:   weekDate(3, 22),
-      extendedProps: { meta: '8:00–10:00 · meadows' }
+      extendedProps: { meta: '8:00–10:00 · meadows', time: '8:00–10:00pm', location: 'Meadows', org: 'Rec Sports', types: ['Athletics', 'Open-to-all'] }
     },
     {
       title: 'Club Meeting',
       start: weekDate(5, 15),
       end:   weekDate(5, 17),
-      extendedProps: { meta: '3:00–5:00 · TBD' }
+      extendedProps: { meta: '3:00–5:00 · TBD', time: '3:00–5:00pm', location: 'TBD', org: 'TBD', types: ['Organization'] }
     }
   ],
   eventContent: function(arg) {
@@ -127,8 +127,14 @@ const calendar = new FullCalendar.Calendar(document.getElementById('calendar'), 
   },
   eventClick: function(info) {
     info.jsEvent.preventDefault();
-    const popupId = info.event.extendedProps.popupId || null;
-    openPopup(popupId, null);
+    const p = info.event.extendedProps;
+    document.getElementById('popup-event-title').textContent    = info.event.title;
+    document.getElementById('popup-event-time').textContent     = p.time     || '';
+    document.getElementById('popup-event-location').textContent = p.location || '';
+    document.getElementById('popup-event-org').textContent      = p.org      || '';
+    document.getElementById('popup-event-types').innerHTML =
+      (p.types || []).map(t => `<li>${t}</li>`).join('');
+    openPopup('popup-event', null);
   }
 });
 
