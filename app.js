@@ -1,6 +1,29 @@
 // ── Placeholder interaction handlers ──
 // These are stubs ready to be wired up to real data/state.
 
+// ── Week header rendering ──
+const DAY_ABBR   = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+let weekOffset = 0;
+
+function getSundayOfWeek() {
+  const today = new Date();
+  const sunday = new Date(today);
+  sunday.setDate(today.getDate() - today.getDay() + weekOffset * 7);
+  sunday.setHours(0, 0, 0, 0);
+  return sunday;
+}
+
+function renderWeekHeaders() {
+  const sunday = getSundayOfWeek();
+  document.querySelectorAll('.day-header').forEach((el, i) => {
+    const d = new Date(sunday);
+    d.setDate(sunday.getDate() + i);
+    el.textContent = `${DAY_ABBR[i]} ${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
+  });
+}
+
 // Filter button: toggle dropdown (Location) or placeholder for others
 function toggleDropdown(dropdownId, btn) {
   const dropdown = document.getElementById(dropdownId);
@@ -19,10 +42,10 @@ function placeholderFilter(filterName) {
   console.log(`[placeholder] Filter clicked: ${filterName}`);
 }
 
-// Placeholder for week navigation
+// Week navigation
 function placeholderNav(direction) {
-  // TODO: shift displayed week forward or backward
-  console.log(`[placeholder] Navigate: ${direction}`);
+  weekOffset += direction === 'next' ? 1 : -1;
+  renderWeekHeaders();
 }
 
 // Placeholder for search input
@@ -67,3 +90,6 @@ function closeAll() {
   document.querySelectorAll('.event-popup.open').forEach(p => p.classList.remove('open'));
   document.getElementById('backdrop').classList.remove('active');
 }
+
+// Initialise on load
+renderWeekHeaders();
