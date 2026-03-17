@@ -1,29 +1,6 @@
 // ── Placeholder interaction handlers ──
 // These are stubs ready to be wired up to real data/state.
 
-// ── Week header rendering ──
-const DAY_ABBR   = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-let weekOffset = 0;
-
-function getSundayOfWeek() {
-  const today = new Date();
-  const sunday = new Date(today);
-  sunday.setDate(today.getDate() - today.getDay() + weekOffset * 7);
-  sunday.setHours(0, 0, 0, 0);
-  return sunday;
-}
-
-function renderWeekHeaders() {
-  const sunday = getSundayOfWeek();
-  document.querySelectorAll('.day-header').forEach((el, i) => {
-    const d = new Date(sunday);
-    d.setDate(sunday.getDate() + i);
-    el.textContent = `${DAY_ABBR[i]} ${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
-  });
-}
-
 // Filter button: toggle dropdown (Location) or placeholder for others
 function toggleDropdown(dropdownId, btn) {
   const dropdown = document.getElementById(dropdownId);
@@ -42,10 +19,10 @@ function placeholderFilter(filterName) {
   console.log(`[placeholder] Filter clicked: ${filterName}`);
 }
 
-// Week navigation
+// Week navigation — delegates to FullCalendar
 function placeholderNav(direction) {
-  weekOffset += direction === 'next' ? 1 : -1;
-  renderWeekHeaders();
+  if (direction === 'next') calendar.next();
+  else calendar.prev();
 }
 
 // Placeholder for search input
@@ -91,5 +68,68 @@ function closeAll() {
   document.getElementById('backdrop').classList.remove('active');
 }
 
-// Initialise on load
-renderWeekHeaders();
+// ── FullCalendar init ──
+
+// Returns a Date for a given day-of-week index (0=Sun) and time in the current week
+function weekDate(dayIndex, hour, minute = 0) {
+  const d = new Date();
+  d.setDate(d.getDate() - d.getDay() + dayIndex);
+  d.setHours(hour, minute, 0, 0);
+  return d;
+}
+
+const calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+  initialView: 'timeGridWeek',
+  headerToolbar: false,   // we use our own nav buttons
+  firstDay: 0,            // week starts Sunday
+  slotMinTime: '09:00:00',
+  slotMaxTime: '23:00:00',
+  allDaySlot: false,
+  height: 'auto',
+  slotDuration: '01:00:00',
+  events: [
+    {
+      title: 'Open Bar',
+      start: weekDate(1, 18),
+      end:   weekDate(1, 19),
+      extendedProps: { popupId: 'popup-open-bar', meta: '6–7 · coffee club' }
+    },
+    {
+      title: 'Craft Event',
+      start: weekDate(2, 13, 30),
+      end:   weekDate(2, 14, 30),
+      extendedProps: { meta: '1:30–2:30 · lakeside' }
+    },
+    {
+      title: 'Study Break',
+      start: weekDate(2, 14),
+      end:   weekDate(2, 14, 30),
+      extendedProps: { meta: '2:00–2:30 · graduate college' }
+    },
+    {
+      title: 'Rec Tennis',
+      start: weekDate(3, 20),
+      end:   weekDate(3, 22),
+      extendedProps: { meta: '8:00–10:00 · meadows' }
+    },
+    {
+      title: 'Club Meeting',
+      start: weekDate(5, 15),
+      end:   weekDate(5, 17),
+      extendedProps: { meta: '3:00–5:00 · TBD' }
+    }
+  ],
+  eventContent: function(arg) {
+    return {
+      html: `<div class="fc-event-title-custom">${arg.event.title}</div>` +
+            `<div class="fc-event-meta-custom">${arg.event.extendedProps.meta || ''}</div>`
+    };
+  },
+  eventClick: function(info) {
+    info.jsEvent.preventDefault();
+    const popupId = info.event.extendedProps.popupId || null;
+    openPopup(popupId, null);
+  }
+});
+
+calendar.render();

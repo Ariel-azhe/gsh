@@ -235,136 +235,66 @@ body {
   background: #3730a3;
 }
 
-/* ── Calendar ── */
-.calendar-wrapper {
-  display: flex;
-  overflow-x: auto;
+/* ── FullCalendar theme overrides ── */
+#calendar {
+  padding: 0 24px 24px;
 }
 
-/* CSS variable for slot height (1 hour = 60px) */
 :root {
-  --slot-h: 60px;
+  --fc-border-color: #e0e0ee;
+  --fc-page-bg-color: #fff;
+  --fc-today-bg-color: rgba(75, 68, 168, 0.06);
+  --fc-event-bg-color: #c7c2e8;
+  --fc-event-border-color: #4B44A8;
+  --fc-event-text-color: #1a1a2e;
 }
 
-/* Time gutter */
-.time-gutter {
-  flex-shrink: 0;
-  width: 52px;
-  display: flex;
-  flex-direction: column;
-}
-
-.day-header-spacer {
-  height: 40px;
-  flex-shrink: 0;
-}
-
-.time-slots {
-  display: flex;
-  flex-direction: column;
-}
-
-.time-slot {
-  height: var(--slot-h);
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding-right: 8px;
-  padding-top: 2px;
-  font-size: 12px;
-  color: #888;
-  flex-shrink: 0;
-}
-
-/* Days grid */
-.days-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  flex: 1;
-  min-width: 700px;
-}
-
-.day-col {
-  display: flex;
-  flex-direction: column;
-  border-left: 1px solid #e0e0ee;
-}
-
-.day-col:first-child {
-  border-left: none;
-}
-
-.day-header {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.fc .fc-col-header-cell-cushion {
   font-size: 13px;
   font-weight: 500;
   color: #1a1a2e;
-  flex-shrink: 0;
-  border-bottom: 1px solid #e0e0ee;
+  text-decoration: none;
 }
 
-.day-body {
-  flex: 1;
+.fc .fc-timegrid-slot {
+  height: 60px;
+}
+
+.fc .fc-timegrid-axis-cushion,
+.fc .fc-timegrid-slot-label-cushion {
+  font-size: 12px;
+  color: #888;
+}
+
+.fc .fc-timegrid-col {
   background: #e8e6f5;
-  border-radius: 10px;
-  margin: 4px;
-  position: relative;
-  /* total height = 14 slots × 60px */
-  height: calc(var(--slot-h) * 14);
-  flex-shrink: 0;
 }
 
-/* Draw hour lines inside day-body */
-.day-body::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent calc(var(--slot-h) - 1px),
-    rgba(180,175,220,0.35) calc(var(--slot-h) - 1px),
-    rgba(180,175,220,0.35) var(--slot-h)
-  );
-  pointer-events: none;
-  border-radius: 10px;
+.fc .fc-timegrid-col.fc-day-today {
+  background: rgba(75, 68, 168, 0.10);
 }
 
-/* ── Events ── */
-.event {
-  position: absolute;
-  left: 6px;
-  right: 6px;
-  background: #c7c2e8;
+.fc .fc-event {
   border-radius: 6px;
-  padding: 4px 7px;
+  padding: 3px 6px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  overflow: hidden;
   transition: background 0.15s, box-shadow 0.15s;
-  z-index: 1;
 }
 
-.event:hover {
+.fc .fc-event:hover {
   background: #b0a8e0;
-  box-shadow: 0 2px 8px rgba(75,68,168,0.25);
+  box-shadow: 0 2px 8px rgba(75, 68, 168, 0.25);
 }
 
-.event-title {
+.fc-event-title-custom {
   font-size: 12px;
   font-weight: 600;
-  color: #1a1a2e;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.event-meta {
+.fc-event-meta-custom {
   font-size: 11px;
   color: #3a3560;
   white-space: nowrap;

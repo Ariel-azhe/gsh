@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Princeton Graduate Student Hub</title>
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
   <link rel="stylesheet" href="styles.css" />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 </head>
 <body>
 
@@ -64,110 +66,7 @@
     </div>
 
     <!-- ── Calendar ── -->
-    <div class="calendar-wrapper">
-
-      <!-- Time gutter -->
-      <div class="time-gutter">
-        <div class="day-header-spacer"></div>
-        <div class="time-slots">
-          <div class="time-slot">9am</div>
-          <div class="time-slot">10am</div>
-          <div class="time-slot">11am</div>
-          <div class="time-slot">12pm</div>
-          <div class="time-slot">1pm</div>
-          <div class="time-slot">2pm</div>
-          <div class="time-slot">3pm</div>
-          <div class="time-slot">4pm</div>
-          <div class="time-slot">5pm</div>
-          <div class="time-slot">6pm</div>
-          <div class="time-slot">7pm</div>
-          <div class="time-slot">8pm</div>
-          <div class="time-slot">9pm</div>
-          <div class="time-slot">10pm</div>
-        </div>
-      </div>
-
-      <!-- Day columns -->
-      <div class="days-grid">
-
-        <!-- Sun Feb 21 -->
-        <div class="day-col">
-          <div class="day-header"></div>
-          <div class="day-body"></div>
-        </div>
-
-        <!-- Mon Feb 22 -->
-        <div class="day-col">
-          <div class="day-header"></div>
-          <div class="day-body">
-            <div class="event"
-                 style="top: calc(var(--slot-h) * 9); height: calc(var(--slot-h) * 1);"
-                 onclick="openPopup('popup-open-bar', this)">
-              <span class="event-title">Open Bar</span>
-              <span class="event-meta">6-7 &nbsp;&#x1F464; coffee club</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tues Feb 23 -->
-        <div class="day-col">
-          <div class="day-header"></div>
-          <div class="day-body">
-            <div class="event"
-                 style="top: calc(var(--slot-h) * 4.5); height: calc(var(--slot-h) * 1);"
-                 onclick="openPopup(null, this)">
-              <span class="event-title">Craft Event</span>
-              <span class="event-meta">1:30-2:30 &nbsp;&#x1F464; lakeside</span>
-            </div>
-            <div class="event"
-                 style="top: calc(var(--slot-h) * 5); height: calc(var(--slot-h) * 0.5);"
-                 onclick="openPopup(null, this)">
-              <span class="event-title">Study Break</span>
-              <span class="event-meta">2:00-2:30 &nbsp;&#x1F464; graduate college</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Wed Feb 24 -->
-        <div class="day-col">
-          <div class="day-header"></div>
-          <div class="day-body">
-            <div class="event"
-                 style="top: calc(var(--slot-h) * 11); height: calc(var(--slot-h) * 2);"
-                 onclick="openPopup(null, this)">
-              <span class="event-title">Rec Tennis</span>
-              <span class="event-meta">8:00-10:00 &nbsp;&#x1F464; meadows</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Thurs Feb 25 -->
-        <div class="day-col">
-          <div class="day-header"></div>
-          <div class="day-body"></div>
-        </div>
-
-        <!-- Fri Feb 27 -->
-        <div class="day-col">
-          <div class="day-header"></div>
-          <div class="day-body">
-            <div class="event"
-                 style="top: calc(var(--slot-h) * 6); height: calc(var(--slot-h) * 2);"
-                 onclick="openPopup(null, this)">
-              <span class="event-title">Club Meeting</span>
-              <span class="event-meta">3:00-5:00 &nbsp;&#x1F464; TBD</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sat Feb 28 -->
-        <div class="day-col">
-          <div class="day-header"></div>
-          <div class="day-body"></div>
-        </div>
-
-      </div><!-- /days-grid -->
-    </div><!-- /calendar-wrapper -->
+    <div id="calendar"></div>
 
   </div><!-- /app-container -->
 
