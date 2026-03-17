@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Princeton Graduate Student Hub</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <script>
+        console.log("Hello, world!");
+    </script>
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"
+                    fill="#4B44A8" stroke="#4B44A8" stroke-width="0.5"/>
+                    <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35V2z"
+                    fill="white" opacity="0.5"/>
+                </svg>
+                <span class="logo-text">Princeton Graduate Student Hub</span>
+            </div>
+            <div class="role-toggle">
+                <span class="role-label">Admin</span>
+                <div class="role-switch-group">
+                    <span class="role-option" id="role-student">Officer</span>
+                    <button class="toggle-switch" id="role-toggle-btn" onclick = "toggleRole()" aria-label="Toggle role">
+                        <span class="toggle-thumb"></span>
+                    </button>
+                    <span class="role-option" id="role-officer">Student</span>
+                </div>
+            </div>
+        </header>
+        </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
